@@ -8,6 +8,7 @@ module NRSR
       doc = Nokogiri::HTML(html)
       voting = new
       voting.subject = doc.css("#ctl15__hlasHeader__nazovLabel").first.content
+      return nil if voting.subject == "(Popis hlasovania)"
       voting.meeting_number = doc.css("#ctl15__hlasHeader__schodzaLink").first.content.match(/\d+/)[0].to_i
       number_raw = doc.css("#ctl15__hlasHeader__cisHlasovaniaLabel").first.content
       voting.number = number_raw.match(/\d+/)[0].to_i unless number_raw.empty?

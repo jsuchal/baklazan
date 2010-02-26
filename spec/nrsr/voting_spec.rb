@@ -1,6 +1,6 @@
 require '../../wrappers/nrsr/voting'
 
-describe NRSR::Voting do
+describe NRSR::Voting do 
   it "should parse voting info" do
     voting = NRSR::Voting.parse(File.read("fixtures/voting1.html"))
     voting.subject.should == "Hlasovanie o pozmeňujúcich a doplňujúcich návrhoch k programu 48. schôdze Národnej rady Slovenskej republiky.\nPodpr. Belousovová, 1. návrh."
@@ -49,5 +49,9 @@ describe NRSR::Voting do
     voting.not_voting_count.should == 3
     voting.not_attending_count.should == 51
     voting.votes.should == {}
+  end
+
+  it "should return nil on invalid data" do
+    NRSR::Voting.parse(File.read("fixtures/voting3.html")).should == nil
   end
 end
