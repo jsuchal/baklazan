@@ -54,4 +54,8 @@ describe NRSR::Voting do
   it "should return nil on invalid data" do
     NRSR::Voting.parse(File.read("fixtures/voting3.html")).should == nil
   end
+
+  it "should return url for a given id" do
+    NRSR::Voting.url(123).should == "http://www.nrsr.sk/Default.aspx?sid=schodze/hlasovanie/hlasklub&ID=123&Lang=sk"
+  end
 end

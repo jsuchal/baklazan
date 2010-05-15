@@ -4,6 +4,10 @@ module NRSR
   class Voting
     attr_accessor :subject, :meeting_number, :number, :happened_at, :attending_count, :voting_count, :pro_count, :against_count, :hold_count, :not_voting_count, :not_attending_count, :votes
 
+    def self.url(id)
+      "http://www.nrsr.sk/Default.aspx?sid=schodze/hlasovanie/hlasklub&ID=#{id}&Lang=sk"            
+    end
+
     def self.parse(html)
       doc = Nokogiri::HTML(html)
       voting = new
